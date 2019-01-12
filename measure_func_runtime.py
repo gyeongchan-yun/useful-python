@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 
 import time
-
+from functools import wraps
 
 def measure_runtime(func):
 
+    @wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()
         ret = func(*args, **kwargs)
