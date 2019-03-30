@@ -37,7 +37,7 @@ class Logger():
             'debug': color_map['green'],
             'warning': color_map['yellow'],
         }
-        
+
         color = level_color_map[self._level]
         end_char = '\033[0m'
         default_format = '%(asctime)s {start}%(levelname)-{length}s {end}: %(message)s'.format(start=color,
@@ -61,7 +61,7 @@ class Logger():
         self._add_stream_handler(formatter)
         if self._write_file:
             self._add_file_handler(formatter)
-        
+
     def _set_logger_level(self):
         level_map = {
             'info': logging.INFO,
@@ -94,7 +94,7 @@ class Logger():
         file_handler = logging.handlers.RotatingFileHandler(file_path,
                                                             maxBytes=max_byte,
                                                             backupCount=3)
-        stream_handler.setFormatter(formatter)
+        file_handler.setFormatter(formatter)
         self._logger.addHandler(file_handler)
 
     def infolog(self, cls, msg):
@@ -108,9 +108,9 @@ class Logger():
         func_name = inspect.stack()[1][3]
 
         message = message.format(file_name=file_name.split('/')[-1],
-                          func=func_name,
-                          line=line_num,
-                          msg=msg)
+                                 func=func_name,
+                                 line=line_num,
+                                 msg=msg)
         self._logger.info(message)
 
     def debuglog(self, cls, msg):
@@ -120,9 +120,9 @@ class Logger():
         func_name = inspect.stack()[1][3]
 
         message = message.format(file_name=file_name.split('/')[-1],
-                             func=func_name,
-                             line=line_num,
-                             msg=msg)
+                                 func=func_name,
+                                 line=line_num,
+                                 msg=msg)
         self._logger.debug(message)
 
     def errorlog(self, cls, msg):
@@ -132,9 +132,9 @@ class Logger():
         func_name = inspect.stack()[1][3]
 
         message = message.format(file_name=file_name.split('/')[-1],
-                             func=func_name,
-                             line=line_num,
-                             msg=msg)
+                                 func=func_name,
+                                 line=line_num,
+                                 msg=msg)
         self._logger.error(message)
 
     def warninglog(self, cls, msg):
@@ -144,7 +144,7 @@ class Logger():
         func_name = inspect.stack()[1][3]
 
         message = message.format(file_name=file_name.split('/')[-1],
-                             func=func_name,
-                             line=line_num,
-                             msg=msg)
+                                 func=func_name,
+                                 line=line_num,
+                                 msg=msg)
         self._logger.warning(message)
