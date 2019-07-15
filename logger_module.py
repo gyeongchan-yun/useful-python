@@ -52,8 +52,10 @@ class Logger():
             self._logger = logging.getLogger(__name__)
         else:
             # Get unique logger by each class instance
-            self._logger = logging.getLogger("{0}.{1}".format(self.__class__.__qualname__, 
+            self._logger = logging.getLogger("{0}.{1}".format(self.__class__.__qualname__,
                                                               self._name))
+            # If it's True, logs will be passed to the handlers of ancester loggers.
+            self._logger.propagate = False
 
         self._set_logger_level()
 
